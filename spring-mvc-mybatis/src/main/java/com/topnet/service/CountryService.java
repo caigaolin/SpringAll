@@ -37,4 +37,13 @@ public class CountryService {
         PageInfo<Country> info = new PageInfo<>(list);
         return info;
     }
+
+    /**
+     * 模糊匹配
+     * @param countryname
+     * @return
+     */
+    public List<Country> selectLike(String countryname) {
+        return countryMapper.selectLike(countryname);
+    }
 }

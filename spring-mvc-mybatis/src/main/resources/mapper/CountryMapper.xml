@@ -6,4 +6,17 @@
         <result column="countryname" property="countryName" jdbcType="VARCHAR"/>
         <result column="countrycode" property="countryCode" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <select id="selectLike" resultMap="baseMap" parameterType="java.lang.String">
+        select id,countryname
+        from country
+        <where>
+            <if test="countryname!=null || countryname!='' ">
+                /*CONCAT(countryname) like '%${countryname}%'*/
+                /*countryname like CONCAT('%',#{countryname},'%')*/
+                /*countryname like '%${countryname}%'*/
+                countryname like "%"#{countryname}"%"
+            </if>
+        </where>
+    </select>
 </mapper>

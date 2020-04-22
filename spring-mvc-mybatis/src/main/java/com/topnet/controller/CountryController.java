@@ -38,4 +38,10 @@ public class CountryController {
         PageInfo<Country> pageInfo = countryService.findPage(pageNum, pageSize);
         return pageInfo;
     }
+
+    @ApiOperation(value = "模糊查询")
+    @GetMapping("/selectLike")
+    public List<Country> selectLike(@RequestParam String countryname){
+        return countryService.selectLike(countryname);
+    }
 }
