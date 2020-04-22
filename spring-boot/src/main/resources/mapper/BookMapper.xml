@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.topnet.mapper.BookMapper">
+    <resultMap id="baseMap" type="com.topnet.model.Book">
+        <id column="book_id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="number" property="number" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        book_id, name, number
+    </sql>
+    <select id="findAll" resultMap="baseMap">
+        select
+        <include refid="Base_Column_List"/>
+        from book
+    </select>
+
+    <select id="findOne" resultMap="baseMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from book
+        where book_id = #{id}
+    </select>
+
+    <update id="updateBook" parameterType="hashmap">
+        update book
+        set
+        <if test="name!='' || name!= null">
+            name =#{name}
+        </if>
+        <if test="number!=''">
+            ,number =#{number}
+        </if>
+        where
+        <if test="id!='' ">
+            book_id=#{id}
+        </if>
+    </update>
+    <insert id="insertBook" parameterType="hashmap">
+        insert into book(name, number)
+        values (#{name},
+                #{number})
+    </insert>
+</mapper>
