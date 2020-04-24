@@ -1,5 +1,6 @@
 package com.topnet.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.topnet.model.Country;
 import com.topnet.service.CountryService;
@@ -41,7 +42,7 @@ public class CountryController {
 
     @ApiOperation(value = "模糊查询")
     @GetMapping("/selectLike")
-    public List<Country> selectLike(@RequestParam String countryname){
-        return countryService.selectLike(countryname);
+    public JSONObject selectLike(@RequestParam String countryName){
+        return countryService.selectLike(countryName);
     }
 }

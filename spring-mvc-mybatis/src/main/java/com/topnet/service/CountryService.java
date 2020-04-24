@@ -1,13 +1,17 @@
 package com.topnet.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.topnet.mapper.CountryMapper;
 import com.topnet.model.Country;
+import com.topnet.util.Constant;
+import com.topnet.util.DataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author cgl
@@ -40,10 +44,15 @@ public class CountryService {
 
     /**
      * 模糊匹配
-     * @param countryname
+     * @param countryName
      * @return
      */
-    public List<Country> selectLike(String countryname) {
-        return countryMapper.selectLike(countryname);
+    public JSONObject selectLike(String countryName) {
+        List<Map<String, Object>> list = countryMapper.selectLike(countryName);
+        System.out.println(list);
+        if (list.isEmpty()){
+            return DataUtil.returnData(Constant.CODE_ERROR, "", "列表为空");
+        }
+        return DataUtil.returnData(Constant.CODE_SUCCESS, list, "列表数据");
     }
 }

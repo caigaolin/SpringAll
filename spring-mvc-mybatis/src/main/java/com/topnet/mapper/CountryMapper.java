@@ -4,6 +4,7 @@ import com.topnet.model.Country;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author cgl
@@ -15,8 +16,8 @@ import java.util.List;
 public interface CountryMapper extends Mapper<Country> {
     /**
      * 模糊匹配
-     * @param countryname
+     * @param countryName
      * @return
      */
-    List<Country> selectLike(String countryname);
+    List<Map<String,Object>> selectLike(String countryName);
 }

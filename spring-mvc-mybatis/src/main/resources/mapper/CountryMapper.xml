@@ -7,15 +7,12 @@
         <result column="countrycode" property="countryCode" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="selectLike" resultMap="baseMap" parameterType="java.lang.String">
+    <select id="selectLike" resultType="java.util.Map" parameterType="java.lang.String">
         select id,countryname
         from country
         <where>
-            <if test="countryname!=null || countryname!='' ">
-                /*CONCAT(countryname) like '%${countryname}%'*/
-                /*countryname like CONCAT('%',#{countryname},'%')*/
-                /*countryname like '%${countryname}%'*/
-                countryname like "%"#{countryname}"%"
+            <if test="countryName!=null || countryName!='' ">
+                CONCAT(countryname) like '%${countryName}%'
             </if>
         </where>
     </select>
