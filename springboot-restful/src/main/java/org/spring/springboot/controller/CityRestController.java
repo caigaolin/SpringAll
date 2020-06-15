@@ -1,8 +1,6 @@
 package org.spring.springboot.controller;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.spring.springboot.domain.City;
 import org.spring.springboot.service.CityService;
@@ -39,9 +37,10 @@ public class CityRestController {
      * @return
      */
     @ApiOperation(value = "根据城市id查询城市信息", notes = "查询唯一城市接口")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query",name = "id",value = "城市id",required = true,dataType = "Integer")
-    })
+//    入参 参数说明
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(name = "id",value = "城市id",required = true,dataType = "Integer")
+//    })
     @RequestMapping(value = "/api/city/{id}", method = RequestMethod.GET)
     public City findOneCity(@PathVariable("id") Long id) {
         return cityService.findCityById(id);
