@@ -1,10 +1,14 @@
 package org.spring.springboot.domain;
 
+import lombok.Data;
+import lombok.ToString;
 /**
  * 城市实体类
  *
  * Created by bysocket on 07/02/2017.
  */
+@Data
+@ToString
 public class City {
 
     /**
@@ -27,7 +31,7 @@ public class City {
      */
     private String description;
 
-    public Long getId() {
+   /* public Long getId() {
         return id;
     }
 
@@ -57,5 +61,5 @@ public class City {
 
     public void setDescription(String description) {
         this.description = description;
-    }
+    }*/
 }
